@@ -1,0 +1,69 @@
+var ornamentList=[];
+
+
+function start(){
+    tree();
+    setTimer(ornaments,400);
+    star();
+    
+   
+    
+}
+
+function star(){
+var polygon = new Polygon();
+var x = 0;
+var y = 100;
+polygon.addPoint(getWidth()/2-x-60, y+30);
+polygon.addPoint(getWidth()/2-x-25, y+30);
+polygon.addPoint(getWidth()/2-x, y);  //top point
+polygon.addPoint(getWidth()/2-x+25, y+30);
+polygon.addPoint(getWidth()/2-x+60, y+30);
+
+polygon.addPoint(getWidth()/2-x+30, y+60);
+polygon.addPoint(getWidth()/2-x+40, y+110);  //bottom right
+polygon.addPoint(getWidth()/2 - x, y+80);
+polygon.addPoint(getWidth()/2-x -40, y+110);  //bottom left
+polygon.addPoint(getWidth()/2-x-30, y+60);
+
+polygon.setColor(Color.yellow);
+add(polygon);
+}
+
+
+
+
+
+
+function tree(){
+     for(var i =11; i>=0; i--){
+        var rect = new Rectangle(20*(i), 20);
+        var x = getWidth()/2 - 10*(i);
+        var y = getHeight()-300+20*i;
+        var randX=Randomizer.nextInt(getWidth()/2 - 10*(i),getWidth()/2 - 10*(i)+20*i);
+        var randY=Randomizer.nextInt(getHeight()-300+20*i,getHeight()-300+20*i+20);
+        var ornament = new Circle(10);
+        ornament.setPosition(randX,randY);
+        ornamentList.push(ornament);
+        rect.setPosition(x,y);
+        var treeGreen = new Color(21, 61, 32);
+        rect.setColor(treeGreen);
+        add(rect);
+    }
+    var trunk = new Rectangle(40, 60);
+    trunk.setColor(new Color(77, 52, 10));
+    trunk.setPosition(getWidth()/2 -20, getHeight()-60);
+    add(trunk);
+    
+ 
+}
+
+function ornaments(){
+   
+    for(var i = 0; i<ornamentList.length; i++){
+        var lightColor = Randomizer.nextColor();
+        ornamentList[i].setColor(lightColor);
+        add(ornamentList[i]);
+    }
+    
+}
